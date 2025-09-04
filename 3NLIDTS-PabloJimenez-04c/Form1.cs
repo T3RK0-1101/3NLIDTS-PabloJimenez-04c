@@ -49,7 +49,7 @@ namespace _3NLIDTS_PabloJimenez_04c
                $"Tel: {telefono}\r\nGenero: {genero}";
             MessageBox.Show(datos, "Valores registrados",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            //P
         }
     }
 }
