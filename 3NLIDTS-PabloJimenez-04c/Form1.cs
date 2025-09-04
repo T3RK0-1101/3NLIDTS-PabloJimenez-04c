@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace _3NLIDTS_PabloJimenez_04c
 {
@@ -15,6 +16,48 @@ namespace _3NLIDTS_PabloJimenez_04c
         public Form1()
         {
             InitializeComponent();
+
+            tbnombre.TextChanged += ValidarNombre;
+            tbapellidos.TextChanged += ValidarApellidos;
+            tbedad.TextChanged += ValidarEdad;
+            tbestatura.TextChanged += ValidarEstatura;
+            tbtelefono.Leave += ValidarTelefono;
+
+        }
+
+        private void ValidarEdad(object sender, EventArgs e) 
+        { 
+
+        }
+
+        private void ValidarEstatura(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ValidarApellidos(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ValidarNombre(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (!EsTextoValido(textBox.Text)) 
+            {
+                MessageBox.Show("Por favor ingrese un nombre valido (solo letras y espacios).",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool EsTextoValido(string valor) 
+        {
+            return Regex.IsMatch(valor,@"^[a-ZA-Z\s]+$");
+        }
+
+        private void ValidarTelefono(object sender, EventArgs e)
+        {
+
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
