@@ -52,7 +52,7 @@ namespace _3NLIDTS_PabloJimenez_04c
 
         private bool EsTextoValido(string valor) 
         {
-            return Regex.IsMatch(valor,@"^[a-ZA-Z\s]+$");
+            return Regex.IsMatch(valor,@"^[a-zA-Z\s]+$");
         }
 
         private void ValidarTelefono(object sender, EventArgs e)
