@@ -16,48 +16,68 @@ namespace _3NLIDTS_PabloJimenez_04c
         public Form1()
         {
             InitializeComponent();
-
-            tbnombre.TextChanged += ValidarNombre;
-            tbapellidos.TextChanged += ValidarApellidos;
-            tbedad.TextChanged += ValidarEdad;
-            tbestatura.TextChanged += ValidarEstatura;
-            tbtelefono.Leave += ValidarTelefono;
-
+            tbnombre.TextChanged += validarNombre;
+            tbapellidos.TextChanged += validarApellido;
+            tbedad.TextChanged += validarEdad;
+            tbestatura.TextChanged += validarEstatura;
+            tbtelefono.TextChanged += validarTelefono;
         }
-
-        private void ValidarEdad(object sender, EventArgs e) 
-        { 
-
-        }
-
-        private void ValidarEstatura(object sender, EventArgs e)
+        private bool esenterovalido(string valor)
         {
-
+            return Regex.IsMatch(valor, @"^[a-zA-Z\s]+$");
         }
 
-        private void ValidarApellidos(object sender, EventArgs e)
+        private bool edadvalida(string valor)
         {
-
+            return Regex.IsMatch(valor, @"^[0-9]+$");
         }
 
-        private void ValidarNombre(object sender, EventArgs e)
+        private bool telefonovalida(string valor)
+        {
+            return Regex.IsMatch(valor, @"^[0-9]+$");
+        }
+
+        private void validarNombre(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (!EsTextoValido(textBox.Text)) 
+            if (!esenterovalido(textBox.Text))
             {
-                MessageBox.Show("Por favor ingrese un nombre valido (solo letras y espacios).",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("por favor ingrese un nombre valido", "ERROR");
+                textBox.Clear();
+
+            }
+        }
+        private void validarApellido(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (!esenterovalido(textBox.Text))
+            {
+                MessageBox.Show("por favor ingrese un nombre valido", "ERROR");
+                textBox.Clear();
             }
         }
 
-        private bool EsTextoValido(string valor) 
+        private void validarEdad(object sender, EventArgs e)
         {
-            return Regex.IsMatch(valor,@"^[a-zA-Z\s]+$");
+            TextBox textBox = (TextBox)sender;
+            if (!edadvalida(textBox.Text))
+            {
+                MessageBox.Show("por favor ingrese una edad valida", "ERROR");
+                textBox.Clear();
+            }
         }
-
-        private void ValidarTelefono(object sender, EventArgs e)
+        private void validarEstatura(object sender, EventArgs e)
         {
 
+        }
+        private void validarTelefono(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (!telefonovalida(textBox.Text))
+            {
+                MessageBox.Show("por favor ingrese una edad valida", "ERROR");
+                textBox.Clear();
+            }
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
