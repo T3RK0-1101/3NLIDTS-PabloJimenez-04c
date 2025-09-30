@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
@@ -22,6 +23,7 @@ namespace _3NLIDTS_PabloJimenez_04c
             tbestatura.TextChanged += validarEstatura;
             tbtelefono.TextChanged += validarTelefono;
         }
+
         private bool esenterovalido(string valor)
         {
             return Regex.IsMatch(valor, @"^[a-zA-Z\s]+$");
@@ -32,6 +34,11 @@ namespace _3NLIDTS_PabloJimenez_04c
             return Regex.IsMatch(valor, @"^[0-9]+$");
         }
 
+        private bool estaturavalida(string valor)
+        {
+            return Regex.IsMatch(valor, @"^\d+(\.\d+)?$");
+        }
+
         private bool telefonovalida(string valor)
         {
             return Regex.IsMatch(valor, @"^[0-9]+$");
@@ -40,19 +47,19 @@ namespace _3NLIDTS_PabloJimenez_04c
         private void validarNombre(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (!esenterovalido(textBox.Text))
+            if (!esenterovalido(textBox.Text) && !string.IsNullOrEmpty(textBox.Text))
             {
-                MessageBox.Show("por favor ingrese un nombre valido", "ERROR");
+                MessageBox.Show("Por favor ingrese un nombre valido (solo letras).", "ERROR");
                 textBox.Clear();
-
             }
         }
+
         private void validarApellido(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (!esenterovalido(textBox.Text))
+            if (!esenterovalido(textBox.Text) && !string.IsNullOrEmpty(textBox.Text))
             {
-                MessageBox.Show("por favor ingrese un nombre valido", "ERROR");
+                MessageBox.Show("Por favor ingrese un apellido valido (solo letras).", "ERROR");
                 textBox.Clear();
             }
         }
@@ -60,23 +67,42 @@ namespace _3NLIDTS_PabloJimenez_04c
         private void validarEdad(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (!edadvalida(textBox.Text))
+            if (!edadvalida(textBox.Text) && !string.IsNullOrEmpty(textBox.Text))
             {
-                MessageBox.Show("por favor ingrese una edad valida", "ERROR");
+                MessageBox.Show("Por favor ingrese una edad valida (solo numeros).", "ERROR");
                 textBox.Clear();
             }
         }
+
         private void validarEstatura(object sender, EventArgs e)
         {
-
+            TextBox textBox = (TextBox)sender;
+            if (!estaturavalida(textBox.Text) && !string.IsNullOrEmpty(textBox.Text))
+            {
+                MessageBox.Show("Por favor ingrese una estatura valida (ej. 1.75).", "ERROR");
+                textBox.Clear();
+            }
         }
         private void validarTelefono(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (!telefonovalida(textBox.Text))
+            if (!telefonovalida(textBox.Text) && !string.IsNullOrEmpty(textBox.Text))
             {
-                MessageBox.Show("por favor ingrese una edad valida", "ERROR");
+                MessageBox.Show("Por favor ingrese un telefono valido (solo numeros).", "ERROR");
                 textBox.Clear();
+            }
+        }
+        private void guardarDatosEnTXT(string datos)
+        {
+            try
+            {
+                string path = "datos.txt";
+                File.AppendAllText(path, datos + Environment.NewLine + "-------------------------" + Environment.NewLine);
+                MessageBox.Show("Los datos han sido guardados en el archivo datos.txt", "Guardado Exitoso");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al guardar los datos: " + ex.Message, "Error al guardar");
             }
         }
 
@@ -112,6 +138,7 @@ namespace _3NLIDTS_PabloJimenez_04c
                $"Tel: {telefono}\r\nGenero: {genero}";
             MessageBox.Show(datos, "Valores registrados",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+            guardarDatosEnTXT(datos);
             //Vr.0002
         }
     }
