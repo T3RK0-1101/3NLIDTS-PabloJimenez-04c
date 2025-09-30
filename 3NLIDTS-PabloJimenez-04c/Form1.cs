@@ -36,7 +36,7 @@ namespace _3NLIDTS_PabloJimenez_04c
 
         private bool estaturavalida(string valor)
         {
-            return Regex.IsMatch(valor, @"^\d+(\.\d+)?$");
+            return Regex.IsMatch(valor, @"^\d*(\.\d*)?$");
         }
 
         private bool telefonovalida(string valor)
