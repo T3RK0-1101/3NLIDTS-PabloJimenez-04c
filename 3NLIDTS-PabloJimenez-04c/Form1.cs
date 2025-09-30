@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
 
 namespace _3NLIDTS_PabloJimenez_04c
 {
@@ -139,7 +140,7 @@ namespace _3NLIDTS_PabloJimenez_04c
             MessageBox.Show(datos, "Valores registrados",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             guardarDatosEnTXT(datos);
-            //Vr.0002
+            //Vr.0003 :)
         }
     }
 }
