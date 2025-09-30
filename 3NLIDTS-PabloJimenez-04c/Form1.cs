@@ -139,7 +139,7 @@ namespace _3NLIDTS_PabloJimenez_04c
             MessageBox.Show(datos, "Valores registrados",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             guardarDatosEnTXT(datos);
-            //Vr.0002
+            //Vr.0002 :)
         }
     }
 }
