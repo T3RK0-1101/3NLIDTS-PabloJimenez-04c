@@ -27,7 +27,7 @@ namespace _3NLIDTS_PabloJimenez_04c
 
         string ConexionSQL = "Server=localhost;Port:3306;Database=formulario3N;Uid=root;Pwd=;";
 
-        private void InsertarRegistro(string nombre, string apellidos, float estatura, int edad, string telefono, string genero)
+        private void InsertarRegistro(string nombre, string apellidos, decimal estatura, int edad, string telefono, string genero)
         {
             using (MySqlConnection conn = new MySqlConnection(ConexionSQL))
             { 
